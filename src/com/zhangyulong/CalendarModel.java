@@ -6,8 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarModel {
-    private final int ROWS = 5;
-    private final int COLUMNS = 7;
+    public static final int ROWS = 5;
+    public static final int COLUMNS = 7;
     private final String DAY_MONTH_LENGTH = "%02d";
     private final String YEAR_LENGTH = "%04d";
     private Date[][] calendarDate = new Date[ROWS][COLUMNS];

@@ -1,5 +1,6 @@
 package com.zhangyulong;
 
+import javax.swing.*;
 import java.util.Date;
 
 public class Main {
@@ -13,5 +14,18 @@ public class Main {
                 System.out.println(j);
             }
         }
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    createAndShowGUI();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public static void createAndShowGUI() throws Exception {
+        new CalendarView();
     }
 }
