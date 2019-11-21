@@ -37,7 +37,7 @@ public class CalendarModel {
             for (int column = 0; column < calendarDate[0].length; column++) {
                 calendarDate[row][column] = null;
                 int day = row * calendarDate[row].length + column + 1 - startOffset;
-                if (day > 0 && day <= 31) {
+                if (day > 0 && day <= getDaysOfMonth(currentDate)) {
                     try {
                         calendarDate[row][column] = simpleDateFormat.parse(yearMonth + String.format(DAY_MONTH_LENGTH, day));
                     } catch (ParseException e) {
@@ -74,4 +74,11 @@ public class CalendarModel {
     public void setCurrentDate(Date currentDate) {
         this.currentDate = currentDate;
     }
+
+    public static int getDaysOfMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
 }

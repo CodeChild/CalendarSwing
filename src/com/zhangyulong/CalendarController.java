@@ -42,7 +42,6 @@ public class CalendarController {
     }
 
     public void updateDayText() {
-        // FIXME Do no display next month day text
         Date[][] calendarDate = calendarModel.getCalendarDate();
         if (dayText.length != calendarDate.length ||
                 dayText[0].length != calendarDate[0].length) {
