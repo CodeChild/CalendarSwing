@@ -11,7 +11,9 @@ public class CalendarModel {
     private final String DAY_MONTH_LENGTH = "%02d";
     private final String YEAR_LENGTH = "%04d";
     private Date[][] calendarDate = new Date[ROWS][COLUMNS];
+    private String[] dayOfWeek = {"日", "一", "二", "三", "四", "五", "六"};
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+    private Date currentDate;
 
     CalendarModel() {
     }
@@ -27,11 +29,13 @@ public class CalendarModel {
                     yearMonth +
                             String.format(DAY_MONTH_LENGTH, 1)));
             startOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            setCurrentDate(calendar.getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
         for (int row = 0; row < calendarDate.length; row++) {
             for (int column = 0; column < calendarDate[0].length; column++) {
+                calendarDate[row][column] = null;
                 int day = row * calendarDate[row].length + column + 1 - startOffset;
                 if (day > 0 && day <= 31) {
                     try {
@@ -40,17 +44,34 @@ public class CalendarModel {
                         e.printStackTrace();
                     }
                 }
+                System.out.println(calendarDate[row][column]);
             }
         }
+
+        System.out.println();
     }
+
 
     public void setCalendarDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         setCalendarDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+        setCurrentDate(date);
     }
 
     public Date[][] getCalendarDate() {
         return calendarDate;
+    }
+
+    public String[] getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 }
